@@ -1,7 +1,33 @@
 /**
  * Created by jizhengyong on 2018/2/25.
  */
+
+
 public class Solution {
+
+
+    public String removeDuplicate(String str) {
+
+        char[] cs = str.toCharArray();
+
+
+        int k = 0;
+        int i = 0;
+        int length = cs.length;
+        for (; i < length - 1; i++) {
+            if (cs[i] == cs[i + 1]) {
+                k++;
+            } else {
+                cs[i - k] = cs[i];
+            }
+            System.out.println(String.valueOf(cs));
+        }
+        cs[length - 1 - k] = cs[length - 1];
+        System.out.println(String.valueOf(cs));
+        System.out.println(String.valueOf(cs).substring(0, length - k));
+        return str;
+
+    }
 
 
     /**
@@ -29,8 +55,24 @@ public class Solution {
                 nums[index++] = nums[i];
         }
         return index;
+    }
 
 
+    public static void main(String... args) {
+
+        new Solution().removeDuplicate("aabbbcc");
+    }
+
+    public boolean containsDuplicate() {
+        int[] nums = new int[50000];
+
+        for (int j = 0; j < nums.length - 1; j++) {
+            for (int k = j + 1; k < nums.length; k++) {
+                if (nums[j] == nums[k])
+                    return true;
+            }
+        }
+        return false;
     }
 
 }
